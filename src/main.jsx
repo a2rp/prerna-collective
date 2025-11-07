@@ -6,11 +6,11 @@ import "./index.css";
 import App from "./App.jsx";
 
 createRoot(document.getElementById("root")).render(
-    <React.StrictMode
-        basename="/prerna-collective"
-    >
-        <BrowserRouter>
+    <React.StrictMode>
+        <BrowserRouter basename="/prerna-collective">
             <App />
         </BrowserRouter>
     </React.StrictMode>
 );
+
+
