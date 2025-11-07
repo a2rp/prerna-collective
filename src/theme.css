@@ -1,0 +1,168 @@
+/* src/theme.css */
+/* ============================
+   Monochrome Neutrals + Blue UI
+   - Light: pure white surfaces, black text
+   - Dark: pure black surfaces, white text
+   - Buttons/links/shadows/tints: blue
+   ============================ */
+
+/* ===== Light (default) — pure white UI ===== */
+:root {
+    /* Neutrals: ONLY black/white */
+    --bg: #ffffff; /* page */
+    --surface: #ffffff; /* sections */
+    --card: #ffffff; /* cards */
+    --text: #000000; /* main text */
+    --text-muted: #1a1a1a; /* subtle text (still black family) */
+    --border: rgba(0, 0, 0, 0.12); /* thin black alpha */
+
+    /* Brand (blue for interactive) */
+    --primary: #2563eb; /* blue-600 */
+    --primary-rgb: 37 99 235;
+    --primary-contrast: #ffffff;
+
+    /* Links & focus */
+    --link: #1d4ed8; /* blue-700 */
+    --link-hover: #1e40af; /* blue-800 */
+    --focus-ring: 0 0 0 3px rgb(var(--primary-rgb) / 0.35);
+    --ring: rgb(var(--primary-rgb) / 0.35);
+
+    /* Blue tints (for chips, hovers, subtle fills) */
+    --tint-weak: rgb(var(--primary-rgb) / 0.06);
+    --tint-med: rgb(var(--primary-rgb) / 0.12);
+    --tint-strong: rgb(var(--primary-rgb) / 0.18);
+
+    /* Brand surfaces (for headers/stripes) */
+    --surface-brand-1: linear-gradient(
+        0deg,
+        rgb(var(--primary-rgb) / 0.06),
+        rgb(var(--primary-rgb) / 0.06)
+    );
+    --surface-brand-2: linear-gradient(
+        0deg,
+        rgb(var(--primary-rgb) / 0.12),
+        rgb(var(--primary-rgb) / 0.12)
+    );
+
+    /* Shadows (bluish) */
+    --shadow-sm: 0 2px 10px rgba(37, 99, 235, 0.08);
+    --shadow-md: 0 12px 36px rgba(37, 99, 235, 0.16);
+
+    /* Radius & spacing (unchanged) */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-6: 24px;
+    --space-8: 32px;
+
+    --site-header-h: 60px;
+    color-scheme: light;
+}
+
+/* ===== Auto Dark — pure black UI ===== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #000000;
+        --surface: #000000;
+        --card: #000000;
+        --text: #ffffff;
+        --text-muted: #e6e6e6; /* still white family */
+        --border: rgba(255, 255, 255, 0.16); /* thin white alpha */
+
+        --primary: #3b82f6; /* blue-500 pops on black */
+        --primary-rgb: 59 130 246;
+        --primary-contrast: #000000;
+
+        --link: #60a5fa; /* blue-400/500 range */
+        --link-hover: #93c5fd; /* lighter blue */
+        --focus-ring: 0 0 0 3px rgb(var(--primary-rgb) / 0.45);
+        --ring: rgb(var(--primary-rgb) / 0.45);
+
+        --tint-weak: rgb(var(--primary-rgb) / 0.1);
+        --tint-med: rgb(var(--primary-rgb) / 0.16);
+        --tint-strong: rgb(var(--primary-rgb) / 0.22);
+
+        --surface-brand-1: linear-gradient(
+            0deg,
+            rgb(var(--primary-rgb) / 0.1),
+            rgb(var(--primary-rgb) / 0.1)
+        );
+        --surface-brand-2: linear-gradient(
+            0deg,
+            rgb(var(--primary-rgb) / 0.18),
+            rgb(var(--primary-rgb) / 0.18)
+        );
+
+        --shadow-sm: 0 2px 10px rgba(59, 130, 246, 0.25);
+        --shadow-md: 0 12px 36px rgba(59, 130, 246, 0.35);
+
+        color-scheme: dark;
+    }
+}
+
+/* ===== Manual overrides (optional) ===== */
+html[data-theme="light"] {
+    --bg: #fff;
+    --surface: #fff;
+    --card: #fff;
+    --text: #000;
+    --text-muted: #1a1a1a;
+    --border: rgba(0, 0, 0, 0.12);
+    --primary: #2563eb;
+    --primary-rgb: 37 99 235;
+    --primary-contrast: #fff;
+    --link: #1d4ed8;
+    --link-hover: #1e40af;
+    --focus-ring: 0 0 0 3px rgb(var(--primary-rgb) / 0.35);
+    --ring: rgb(var(--primary-rgb) / 0.35);
+    --tint-weak: rgb(var(--primary-rgb) / 0.06);
+    --tint-med: rgb(var(--primary-rgb) / 0.12);
+    --tint-strong: rgb(var(--primary-rgb) / 0.18);
+    --surface-brand-1: linear-gradient(
+        0deg,
+        rgb(var(--primary-rgb) / 0.06),
+        rgb(var(--primary-rgb) / 0.06)
+    );
+    --surface-brand-2: linear-gradient(
+        0deg,
+        rgb(var(--primary-rgb) / 0.12),
+        rgb(var(--primary-rgb) / 0.12)
+    );
+    --shadow-sm: 0 2px 10px rgba(37, 99, 235, 0.08);
+    --shadow-md: 0 12px 36px rgba(37, 99, 235, 0.16);
+    color-scheme: light;
+}
+html[data-theme="dark"] {
+    --bg: #000;
+    --surface: #000;
+    --card: #000;
+    --text: #fff;
+    --text-muted: #e6e6e6;
+    --border: rgba(255, 255, 255, 0.16);
+    --primary: #3b82f6;
+    --primary-rgb: 59 130 246;
+    --primary-contrast: #000;
+    --link: #60a5fa;
+    --link-hover: #93c5fd;
+    --focus-ring: 0 0 0 3px rgb(var(--primary-rgb) / 0.45);
+    --ring: rgb(var(--primary-rgb) / 0.45);
+    --tint-weak: rgb(var(--primary-rgb) / 0.1);
+    --tint-med: rgb(var(--primary-rgb) / 0.16);
+    --tint-strong: rgb(var(--primary-rgb) / 0.22);
+    --surface-brand-1: linear-gradient(
+        0deg,
+        rgb(var(--primary-rgb) / 0.1),
+        rgb(var(--primary-rgb) / 0.1)
+    );
+    --surface-brand-2: linear-gradient(
+        0deg,
+        rgb(var(--primary-rgb) / 0.18),
+        rgb(var(--primary-rgb) / 0.18)
+    );
+    --shadow-sm: 0 2px 10px rgba(59, 130, 246, 0.25);
+    --shadow-md: 0 12px 36px rgba(59, 130, 246, 0.35);
+    color-scheme: dark;
+}
