@@ -1,78 +1,117 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const rise = keyframes`
+  0% { opacity: 0; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+`;
 
 export const Styled = {
-    Wrapper: styled.div`
-        position: sticky; /* keeps visible if page scrolls a bit */
-        top: calc(var(--site-header-h, 70px) + 0px);
-        z-index: 1;
-        margin-bottom: 10px;
-        padding: 8px 12px;
-        border: 1px solid var(--border);
-        border-radius: var(--radius-md);
-        background: var(--card);
-        box-shadow: var(--shadow-sm);
-        overflow-x: auto; /* mobile: allow horizontal scroll */
-        white-space: nowrap;
+    Wrap: styled.nav`
+        --pad-x: 12px;
+        --h: 38px;
 
-        nav {
-            width: max-content;
-        }
+        display: block;
+        width: 100%;
+        margin: 30px 0;
+
+        border: 1px solid var(--border);
+        background: var(--card);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+
+        animation: ${rise} 0.25s ease both;
 
         ol {
             list-style: none;
-            display: inline-flex;
+            display: flex;
             align-items: center;
+            flex-wrap: wrap;
             gap: 6px;
-            padding: 0;
-            margin: 0;
-        }
-
-        li {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            min-width: 0; /* for text ellipsis in nested items */
+            min-height: var(--h);
+            padding: 6px var(--pad-x);
         }
 
         .crumb {
-            display: inline-block;
-            padding: 6px 10px;
-            border-radius: var(--radius-md);
-            color: var(--text);
-            text-decoration: none;
-            border: 1px solid transparent;
-            transition: background 0.15s ease, border-color 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            min-height: 28px;
             max-width: 240px;
+        }
+
+        .homeLink,
+        .link,
+        .current {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+            line-height: 1;
+            text-decoration: none;
+            color: var(--text);
+            border: 1px solid transparent;
+            background: transparent;
+            max-width: 100%;
+            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        .crumb:hover {
+
+        .homeLink {
             background: var(--tint-weak);
-            border-color: rgb(var(--primary-rgb) / 0.25);
+            border-color: var(--tint-med);
         }
-        .crumb:focus-visible {
+
+        .link {
+            border-color: transparent;
+        }
+        .link:hover {
+            text-decoration: underline;
+            color: var(--link-hover);
+            border-color: var(--tint-med);
+            background: var(--tint-weak);
+        }
+        .link:focus-visible,
+        .homeLink:focus-visible {
             outline: none;
             box-shadow: var(--focus-ring);
         }
 
         .current {
             font-weight: 700;
-            padding: 6px 10px;
-            border-radius: var(--radius-md);
-            background: linear-gradient(
-                0deg,
-                transparent 0 88%,
-                rgb(var(--primary-rgb) / 0.18) 88% 100%
-            );
-            max-width: 280px;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            border-color: var(--tint-med);
+            background: var(--tint-weak);
+            cursor: default;
         }
 
         .sep {
+            display: inline-flex;
+            align-items: center;
             color: var(--text-muted);
-            user-select: none;
-            margin: 0 2px;
+            opacity: 0.8;
+        }
+
+        /* Visually hidden label for home text next to icon */
+        .vis {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        @media (max-width: 720px) {
+            ol {
+                gap: 4px;
+                padding: 6px 8px;
+            }
+            .crumb {
+                max-width: 160px;
+            }
         }
     `,
 };

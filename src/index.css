@@ -1,4 +1,3 @@
-/* src\index.css */
 @import "./theme.css";
 
 /* ============================
@@ -117,7 +116,7 @@ h2 {
     background: rgb(var(--primary-rgb) / 0.12);
 }
 
-/* Forms */
+/* Forms (base) */
 input,
 select,
 textarea {
@@ -131,6 +130,50 @@ input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
     outline: var(--focus-ring);
+}
+
+/* ===== Native <select> popup color normalization =====
+   Many engines paint the dropdown (option list) with OS defaults.
+   These rules unify it with our theme in both light/dark (system + manual). */
+select {
+    background: var(--card);
+    color: var(--text);
+    border-color: var(--border);
+}
+select option {
+    background: var(--card);
+    color: var(--text);
+}
+select option:checked,
+select option:focus,
+select option:hover {
+    background: rgb(var(--primary-rgb) / 0.18);
+    color: var(--text);
+}
+
+/* System dark fallback for engines that ignore CSS vars inside popups */
+@media (prefers-color-scheme: dark) {
+    select,
+    select option {
+        background-color: #000;
+        color: #fff;
+    }
+}
+/* Manual theme override fallback */
+html[data-theme="dark"] select,
+html[data-theme="dark"] select option {
+    background-color: #000;
+    color: #fff;
+}
+
+/* Optional nicer arrow while keeping native behavior.
+   Add className="selectLike" to your <select>. */
+.selectLike {
+    appearance: none;
+    background: linear-gradient(transparent, transparent) padding-box,
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='%23aab' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")
+            no-repeat right 10px center / 14px 14px;
+    padding-right: 34px; /* room for arrow */
 }
 
 /* Chips / Tags */

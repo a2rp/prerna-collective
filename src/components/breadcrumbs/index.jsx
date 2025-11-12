@@ -1,82 +1,106 @@
 import React, { useMemo } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Styled } from "./styled";
-import { navByPath } from "../../nav/navLinks";
+import { TbHome, TbChevronRight } from "react-icons/tb";
 
-function titleCase(s) {
-    return s.replace(/[-_]+/g, " ")
+/* Human titles for known slugs */
+const TITLE_MAP = {
+    home: "Home",
+    "our-work": "Our Work",
+    philanthropy: "Philanthropy",
+    "venture-capital": "Venture Capital",
+    fellowships: "Fellowships",
+    collective: "Collective",
+    careers: "Careers",
+    contact: "Contact",
+    "positive-sum": "Positive Sum",
+    internships: "Internships",
+    "demo-day": "Demo Day",
+    legal: "Legal",
+    terms: "Terms & Conditions",
+    "privacy-policy": "Privacy Policy",
+    "unsolicited-submission-policy": "Unsolicited Submission Policy",
+};
+
+/* Fallback: "nice case" for any slug */
+function toTitle(slug) {
+    const s = decodeURIComponent(slug || "").trim();
+    if (!s) return "";
+    if (TITLE_MAP[s]) return TITLE_MAP[s];
+    return s
+        .replace(/[-_]+/g, " ")
+        .replace(/\s+/g, " ")
         .replace(/\b\w/g, (m) => m.toUpperCase());
 }
 
-function buildTrail(pathname) {
-    // Normalize & split the path into cumulative segments: /a/b → ["/a", "/a/b"]
-    const clean = pathname.replace(/\/+$/, "") || "/";
-    if (clean === "/") return [{ path: "/home", label: "Home" }]; // default to Home
-
-    const parts = clean.split("/").filter(Boolean);
-    const cumul = [];
-    let cur = "";
-    for (const p of parts) {
-        cur += `/${p}`;
-        cumul.push(cur);
+/* Build cumulative crumbs from a pathname */
+function buildCrumbs(pathname) {
+    const segs = pathname.split("/").filter(Boolean);
+    const crumbs = [];
+    let acc = "";
+    for (let i = 0; i < segs.length; i++) {
+        acc += `/${segs[i]}`;
+        crumbs.push({
+            label: toTitle(segs[i]),
+            path: acc,
+            isLast: i === segs.length - 1,
+        });
     }
-
-    // Try registry; fallback to segment title
-    const crumbs = cumul.map((p, i) => {
-        const node = navByPath[p];
-        if (node) return { path: p, label: node.label };
-        const seg = parts[i];
-        return { path: p, label: titleCase(seg) };
-    });
-
-    // Always start with Home (avoid dupes)
-    const hasHome = crumbs.length && crumbs[0].path === "/home";
-    return hasHome ? crumbs : [{ path: "/home", label: "Home" }, ...crumbs];
+    return crumbs;
 }
 
-export default function Breadcrumbs() {
+export default function Breadcrumbs({
+    /* Hide on these paths (exact match). Defaults: / and /home */
+    exclude = ["/", "/home"],
+    /* Hide when there is only one segment (like /collective)? default false */
+    hideIfSingle = false,
+}) {
     const { pathname } = useLocation();
 
-    const trail = useMemo(() => {
-        // If registry defines explicit parents, honor them:
-        // Walk up parents from deepest known node, else fall back to path split.
-        const exact = navByPath[pathname];
-        if (exact) {
-            const chain = [];
-            let n = exact;
-            while (n) {
-                chain.unshift({ path: n.path, label: n.label });
-                n = n.parent ? navByPath[n.parent] : null;
-            }
-            // Ensure Home at start
-            if (!chain.length || chain[0].path !== "/home") {
-                chain.unshift({ path: "/home", label: "Home" });
-            }
-            return chain;
-        }
-        return buildTrail(pathname);
-    }, [pathname]);
+    const model = useMemo(() => {
+        if (exclude.includes(pathname)) return null;
+        const crumbs = buildCrumbs(pathname);
+        if (hideIfSingle && crumbs.length <= 1) return null;
+        return crumbs;
+    }, [pathname, exclude, hideIfSingle]);
 
-    const last = trail.length - 1;
+    if (!model || model.length === 0) return null;
 
     return (
-        <Styled.Wrapper aria-label="breadcrumb">
-            <nav>
-                <ol>
-                    {trail.map((c, i) => (
-                        <li key={c.path}>
-                            {i === last ? (
-                                <span className="current" aria-current="page">{c.label}</span>
+        <Styled.Wrap aria-label="Breadcrumb" role="navigation">
+            <ol>
+                <li className="crumb">
+                    <NavLink to="/home" className="homeLink" aria-label="Home">
+                        <TbHome size={16} />
+                        <span className="vis">Home</span>
+                    </NavLink>
+                </li>
+
+                {model.map((c) => (
+                    <li className="sep" key={`${c.path}-sep`}>
+                        <TbChevronRight size={14} aria-hidden />
+                    </li>
+                ) && null)}
+
+                {model.map((c, idx) => (
+                    <React.Fragment key={c.path}>
+                        <li className="sep">
+                            <TbChevronRight size={14} aria-hidden />
+                        </li>
+                        <li className="crumb">
+                            {c.isLast ? (
+                                <span className="current" aria-current="page" title={c.label}>
+                                    {c.label}
+                                </span>
                             ) : (
-                                <NavLink to={c.path} className="crumb">
+                                <NavLink to={c.path} className="link" title={c.label}>
                                     {c.label}
                                 </NavLink>
                             )}
-                            {i !== last && <span className="sep" aria-hidden="true">›</span>}
                         </li>
-                    ))}
-                </ol>
-            </nav>
-        </Styled.Wrapper>
+                    </React.Fragment>
+                ))}
+            </ol>
+        </Styled.Wrap>
     );
 }

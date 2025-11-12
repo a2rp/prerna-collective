@@ -82,6 +82,6 @@ export const Styled = {
 
         /* Keep your spacing, just align with header height token if present */
         margin: 70px 15px;
-        padding: 15px;
+        /* padding: 15px; */
     `,
 };

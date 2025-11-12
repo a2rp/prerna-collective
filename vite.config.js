@@ -14,6 +14,7 @@ function lastCommitISO() {
 
 export default defineConfig({
     plugins: [react()],
+    base: "/prerna-collective/",
     define: {
         __APP_BUILD_ISO__: JSON.stringify(new Date().toISOString()),
         __APP_COMMIT_ISO__: JSON.stringify(lastCommitISO()),
