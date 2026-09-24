@@ -497,7 +497,7 @@ export default function LegalTerms() {
                                 </NavLink>
                             </div>
                             <div className="tiny">
-                                <TbCheck /> We typically respond within 2–3 business days.
+                                <TbCheck /> We typically respond within 2-3 business days.
                             </div>
                         </div>
                     </div>

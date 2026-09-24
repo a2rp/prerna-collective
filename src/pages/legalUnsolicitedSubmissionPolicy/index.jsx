@@ -258,7 +258,7 @@ export default function LegalUnsolicitedSubmissionPolicy() {
             await navigator.clipboard.writeText(url);
             setCopied(id);
             setTimeout(() => setCopied(""), 1200);
-        } catch { }
+        } catch { /* Ignore unavailable browser APIs. */ }
     };
 
     const handlePrint = () => window.print();

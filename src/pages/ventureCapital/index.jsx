@@ -34,7 +34,7 @@ const PORTFOLIO = [
     {
         name: "FieldAI",
         tag: "AgriTech",
-        img: getImg("vc-field-ai"),
+        img: getImg("vc-field-digital"),
     },
     {
         name: "Auric Grid",
@@ -83,7 +83,7 @@ export default function VentureCapital() {
                     </div>
                     <h1>Backing bold companies with public-good spillovers</h1>
                     <p className="sub">
-                        We invest in founders tackling frontier problems where outcomes compound—
+                        We invest in founders tackling frontier problems where outcomes compound-
                         climate, health, education, and civic infrastructure. Our thesis: catalytic capital +
                         evidence + storytelling → outsized positive externalities.
                     </p>
@@ -118,14 +118,14 @@ export default function VentureCapital() {
                         <TbChartLine size={20} />
                     </div>
                     Evidence-led
-                    <p>We pair capital with measurement—inputs → outputs → outcomes—so learning compounds.</p>
+                    <p>We pair capital with measurement-inputs → outputs → outcomes-so learning compounds.</p>
                 </div>
                 <div className="tile">
                     <div className="ico">
                         <TbHeartHandshake size={20} />
                     </div>
                     Founder-aligned
-                    <p>We optimize for runway, resilience, and community—patient but ambitious partnership.</p>
+                    <p>We optimize for runway, resilience, and community-patient but ambitious partnership.</p>
                 </div>
                 <div className="tile">
                     <div className="ico">
@@ -139,7 +139,7 @@ export default function VentureCapital() {
                         <TbShieldCheck size={20} />
                     </div>
                     Durable progress
-                    <p>We care about robustness—governance, privacy, and safety by design.</p>
+                    <p>We care about robustness-governance, privacy, and safety by design.</p>
                 </div>
             </Styled.Thesis>
 

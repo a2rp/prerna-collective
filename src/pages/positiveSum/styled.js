@@ -5,11 +5,7 @@ const rise = keyframes`
   0% { opacity: 0; transform: translateY(10px) scale(.98); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
 `;
-const floatY = keyframes`
-  0% { transform: translateY(0) }
-  50% { transform: translateY(-6px) }
-  100% { transform: translateY(0) }
-`;
+
 const shimmer = keyframes`
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }

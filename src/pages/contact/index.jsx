@@ -141,7 +141,7 @@ export default function Contact() {
                         Contact <span className="accent">Prerna Collective</span>
                     </h1>
                     <p className="sub">
-                        Reach the right team quickly. For opportunities, partnerships, and media—use the
+                        Reach the right team quickly. For opportunities, partnerships, and media-use the
                         dedicated channels below so we can route you fast.
                     </p>
                     <div className="socials" aria-label="Social links">
@@ -317,7 +317,6 @@ function ContactForm() {
         const fd = new FormData(formRef.current);
         const name = fd.get("name")?.trim();
         const email = fd.get("email")?.trim();
-        const topic = fd.get("topic")?.trim();
         const message = fd.get("message")?.trim();
 
         if (!name || !email || !message) {
@@ -337,7 +336,7 @@ function ContactForm() {
             setDone(true);
             try {
                 formRef.current?.reset();
-            } catch { }
+            } catch { /* Ignore unavailable browser APIs. */ }
         }, 900);
     }
 
@@ -345,7 +344,7 @@ function ContactForm() {
         <Styled.Section id="contact-form">
             <header className="secHeader">
                 <h2>Write to us</h2>
-                <p className="secSub">We usually respond within 2–3 working days.</p>
+                <p className="secSub">We usually respond within 2-3 working days.</p>
             </header>
 
             <Styled.FormWrapper>
@@ -425,7 +424,7 @@ function FAQ() {
             },
             {
                 q: "Do you fund students or early career fellows?",
-                a: "Yes—see Internships. For independent fellows, check Fellowships under Our Work to view typical tracks and cycles.",
+                a: "Yes-see Internships. For independent fellows, check Fellowships under Our Work to view typical tracks and cycles.",
             },
             {
                 q: "Can I request a speaker for an event?",
@@ -433,7 +432,7 @@ function FAQ() {
             },
             {
                 q: "What is your typical response time?",
-                a: "Most inquiries get a response within 2–3 working days. Time-sensitive press requests are prioritized.",
+                a: "Most inquiries get a response within 2-3 working days. Time-sensitive press requests are prioritized.",
             },
             {
                 q: "Where can I find updates and stories?",

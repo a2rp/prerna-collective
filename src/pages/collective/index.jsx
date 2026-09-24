@@ -206,7 +206,7 @@ export default function Collective() {
             { name: "CivicX", img: getImg("logo-civicx", 640, 360) },
             { name: "OpenHealth", img: getImg("logo-openhealth", 640, 360) },
             { name: "Atlas EDU", img: getImg("logo-atlasedu", 640, 360) },
-            { name: "Parity AI", img: getImg("logo-parity", 640, 360) },
+            { name: "Parity Digital", img: getImg("logo-parity", 640, 360) },
             { name: "GreenField", img: getImg("logo-greenfield", 640, 360) },
         ],
         []
@@ -285,7 +285,7 @@ export default function Collective() {
                     <p className="sub">
                         A multidisciplinary group of operators, scientists, policy thinkers, engineers, and
                         storytellers. We combine philanthropy, venture capital, and fellowships to help
-                        ambitious people work on hard problems—responsibly and at scale.
+                        ambitious people work on hard problems-responsibly and at scale.
                     </p>
                     <div className="actions">
                         <NavLink to="/our-work" className="btn-primary" aria-label="Explore Our Work">
@@ -314,7 +314,7 @@ export default function Collective() {
                     <h2><TbBulb /> Our approach</h2>
                     <p className="secSub">
                         We operate like a lab with field sites: test, measure, share, and scale. Programs are
-                        designed to produce public-good spillovers—not just private returns.
+                        designed to produce public-good spillovers-not just private returns.
                     </p>
                 </header>
 

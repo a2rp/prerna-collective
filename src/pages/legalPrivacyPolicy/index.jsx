@@ -70,7 +70,7 @@ export default function LegalPrivacyPolicy() {
 
     /* Persist consent choices */
     useEffect(() => {
-        try { localStorage.setItem(CONSENT_KEY, JSON.stringify(consent)); } catch { }
+        try { localStorage.setItem(CONSENT_KEY, JSON.stringify(consent)); } catch { /* Ignore unavailable browser APIs. */ }
     }, [consent]);
 
     /* Build refs for intersection observing */

@@ -135,7 +135,7 @@ const ROLES = [
         img: getImg("role-operations", 1200, 800),
         tags: ["Hiring", "Onboarding", "Culture"],
         about:
-            "Keep our people systems smooth and humane—hiring loops, onboarding, and day-to-day support.",
+            "Keep our people systems smooth and humane-hiring loops, onboarding, and day-to-day support.",
         responsibilities: [
             "Run hiring logistics and candidate experience.",
             "Curate onboarding checklists and resources.",
@@ -457,7 +457,7 @@ export default function Careers() {
                     {[
                         { icon: <TbSearch />, t: "1. Screen", d: "Share your work; we learn your goals." },
                         { icon: <TbBriefcase2 />, t: "2. Role chat", d: "Meet the team; discuss the roadmap." },
-                        { icon: <TbCertificate />, t: "3. Practical", d: "Small exercise, scoped to hours—not days." },
+                        { icon: <TbCertificate />, t: "3. Practical", d: "Small exercise, scoped to hours-not days." },
                         { icon: <TbUsersGroup />, t: "4. Panel", d: "Cross-team conversation; ask us anything." },
                         { icon: <TbSparkles />, t: "5. Offer", d: "Transparent comp, start date, onboarding plan." },
                     ].map((s, i) => (

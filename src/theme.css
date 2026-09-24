@@ -6,7 +6,7 @@
    - Buttons/links/shadows/tints: blue
    ============================ */
 
-/* ===== Light (default) — pure white UI ===== */
+/* ===== Light (default) - pure white UI ===== */
 :root {
     /* Neutrals: ONLY black/white */
     --bg: #ffffff; /* page */
@@ -62,7 +62,7 @@
     color-scheme: light;
 }
 
-/* ===== Auto Dark — pure black UI ===== */
+/* ===== Auto Dark - pure black UI ===== */
 @media (prefers-color-scheme: dark) {
     :root {
         --bg: #000000;

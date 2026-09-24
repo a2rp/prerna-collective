@@ -1,7 +1,7 @@
-import React, { useEffect, useMemo, useState, useCallback, useRef } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { Styled } from "./styled";
 import { NavLink, useLocation } from "react-router-dom";
-import { IoMenu } from "react-icons/io5";
+import { IoMenu, IoClose } from "react-icons/io5";
 import {
     TbSunMoon,
     TbHome,
@@ -28,9 +28,10 @@ function getInitialTheme() {
     try {
         const saved = localStorage.getItem(THEME_KEY);
         if (saved === "light" || saved === "dark") return saved;
-    } catch { }
-    const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)")?.matches;
-    return prefersDark ? "dark" : "light";
+    } catch {
+        // Keep the default theme when browser storage is unavailable.
+    }
+    return window.matchMedia?.("(prefers-color-scheme: dark)")?.matches ? "dark" : "light";
 }
 
 export default function Header() {
@@ -43,28 +44,34 @@ export default function Header() {
         document.documentElement.setAttribute("data-theme", theme);
         try {
             localStorage.setItem(THEME_KEY, theme);
-        } catch { }
+        } catch {
+            // Theme still works for the current page when storage is unavailable.
+        }
     }, [theme]);
 
-    const handleDisplayDrawer = useCallback(() => setDisplayDrawer(prev => !prev), []);
+    useEffect(() => {
+        document.body.style.overflow = displayDrawer ? "hidden" : "";
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [displayDrawer]);
+
     const closeDrawer = useCallback(() => setDisplayDrawer(false), []);
-    const toggleTheme = useCallback(() => setTheme(t => (t === "light" ? "dark" : "light")), []);
+    const toggleTheme = useCallback(() => setTheme((current) => (current === "light" ? "dark" : "light")), []);
 
     useEffect(() => {
-        if (!displayDrawer) return;
-        const onKey = e => { if (e.key === "Escape") closeDrawer(); };
+        if (!displayDrawer) return undefined;
+        const onKey = (event) => {
+            if (event.key === "Escape") closeDrawer();
+        };
         window.addEventListener("keydown", onKey);
         return () => window.removeEventListener("keydown", onKey);
     }, [displayDrawer, closeDrawer]);
 
     useEffect(() => {
         if (!displayDrawer) return;
-        const container = navInnerRef.current;
-        if (!container) return;
-        const active = container.querySelector(".navItem.active");
-        if (active?.scrollIntoView) {
-            active.scrollIntoView({ block: "center", inline: "nearest", behavior: "smooth" });
-        }
+        const active = navInnerRef.current?.querySelector(".navItem.active");
+        active?.scrollIntoView?.({ block: "center", inline: "nearest", behavior: "smooth" });
     }, [displayDrawer, location.pathname]);
 
     const MAIN_LINKS = useMemo(
@@ -99,9 +106,8 @@ export default function Header() {
                 <Styled.Main>
                     <Styled.NameLogoWrapper>
                         <NavLink to="/home" aria-label="Go to home" className="brandLink">
-                            <span className="logo" aria-hidden="true">
-                                <span className="orb" />
-                                <span className="flare" />
+                            <span className="logo">
+                                <img src="/prerna-collective/logo.png" alt="Prerna Collective logo" />
                             </span>
                             <span className="brand">
                                 <span className="title">Prerna Collective</span>
@@ -111,66 +117,64 @@ export default function Header() {
                     </Styled.NameLogoWrapper>
 
                     <Styled.Col>
-                        <Styled.ThemeToggleLink
+                        <Styled.ThemeToggleButton
+                            type="button"
                             onClick={toggleTheme}
                             title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
                             aria-label="Toggle theme"
-                            role="button"
-                            tabIndex={0}
-                            onKeyDown={(e) => (e.key === "Enter" ? toggleTheme() : null)}
                         >
                             <TbSunMoon size={20} />
-                        </Styled.ThemeToggleLink>
-
-                        <Styled.DrawerLinkWrapper
-                            onClick={handleDisplayDrawer}
-                            title="Menu"
+                        </Styled.ThemeToggleButton>
+                        <Styled.DrawerButton
+                            type="button"
+                            onClick={() => setDisplayDrawer((current) => !current)}
+                            title={displayDrawer ? "Close menu" : "Open menu"}
+                            aria-label={displayDrawer ? "Close navigation menu" : "Open navigation menu"}
                             aria-haspopup="dialog"
                             aria-expanded={displayDrawer}
                         >
-                            <IoMenu size={20} />
-                        </Styled.DrawerLinkWrapper>
+                            {displayDrawer ? <IoClose size={22} /> : <IoMenu size={22} />}
+                        </Styled.DrawerButton>
                     </Styled.Col>
                 </Styled.Main>
             </Styled.Wrapper>
 
             {displayDrawer && (
                 <Styled.DrawerWrapper role="dialog" aria-label="Navigation drawer">
-                    <div className="empty" onClick={closeDrawer} />
+                    <button type="button" className="empty" onClick={closeDrawer} aria-label="Close navigation drawer" />
                     <div className="navlinksWrapper">
                         <div className="navlinksInner" ref={navInnerRef}>
                             <nav aria-label="Primary">
                                 <div className="sectionLabel">Browse</div>
                                 <ul>
-                                    {MAIN_LINKS.map((l) => (
-                                        <li key={l.to}>
+                                    {MAIN_LINKS.map((link) => (
+                                        <li key={link.to}>
                                             <NavLink
-                                                to={l.to}
-                                                end={l.end}
+                                                to={link.to}
+                                                end={link.end}
                                                 className={({ isActive }) => "navItem" + (isActive ? " active" : "")}
                                                 onClick={closeDrawer}
                                             >
-                                                <span className="ico">{l.icon}</span>
-                                                <span className="txt">{l.label}</span>
+                                                <span className="ico">{link.icon}</span>
+                                                <span className="txt">{link.label}</span>
                                             </NavLink>
                                         </li>
                                     ))}
                                 </ul>
                             </nav>
-
                             <nav aria-label="Legal" className="legalBlock">
                                 <div className="sectionLabel">Legal</div>
                                 <ul>
-                                    {LEGAL_LINKS.map((l) => (
-                                        <li key={l.to}>
+                                    {LEGAL_LINKS.map((link) => (
+                                        <li key={link.to}>
                                             <NavLink
-                                                to={l.to}
-                                                end={l.end}
+                                                to={link.to}
+                                                end={link.end}
                                                 className={({ isActive }) => "navItem" + (isActive ? " active" : "")}
                                                 onClick={closeDrawer}
                                             >
-                                                <span className="ico">{l.icon}</span>
-                                                <span className="txt">{l.label}</span>
+                                                <span className="ico">{link.icon}</span>
+                                                <span className="txt">{link.label}</span>
                                             </NavLink>
                                         </li>
                                     ))}

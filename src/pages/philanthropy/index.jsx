@@ -59,7 +59,7 @@ const HIGHLIGHTS = [
         tag: "Education",
         title: "Community tutoring networks at scale",
         blurb:
-            "Neighborhood-led tutoring with rigorous measurement lifted literacy by 18–24% YoY.",
+            "Neighborhood-led tutoring with rigorous measurement lifted literacy by 18-24% YoY.",
     },
     {
         seed: "grantee-mental-health",
@@ -145,7 +145,7 @@ export default function Philanthropy() {
                 <header className="secHeader">
                     <h2>Focus areas</h2>
                     <p className="secSub">
-                        Where we direct capital today — informed by data, shaped with partners.
+                        Where we direct capital today - informed by data, shaped with partners.
                     </p>
                 </header>
 

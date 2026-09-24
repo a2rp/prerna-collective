@@ -58,7 +58,7 @@ const PILLARS = [
         icon: <TbCirclesRelation size={22} />,
         title: "Network effects",
         text:
-            "Capital, community, and storytelling interlock — outcomes accelerate together.",
+            "Capital, community, and storytelling interlock - outcomes accelerate together.",
     },
     {
         icon: <TbTimelineEventExclamation size={22} />,
@@ -70,7 +70,7 @@ const PILLARS = [
         icon: <TbShieldCheck size={22} />,
         title: "Responsible",
         text:
-            "Governance, ethics, and privacy are table stakes — we build trust by design.",
+            "Governance, ethics, and privacy are table stakes - we build trust by design.",
     },
 ];
 
@@ -113,7 +113,7 @@ export default function OurWorkOverview() {
                     </div>
                     <h1>Where capital, community, and craft intersect</h1>
                     <p className="sub">
-                        We operate across philanthropy, venture capital, and fellowships — combining
+                        We operate across philanthropy, venture capital, and fellowships - combining
                         funding with a network that helps meaningful ideas compound.
                     </p>
                     <div className="actions">
@@ -160,7 +160,7 @@ export default function OurWorkOverview() {
                 <header className="secHeader">
                     <h2>Focus areas</h2>
                     <p className="secSub">
-                        Three complementary modes — each reinforcing the others.
+                        Three complementary modes - each reinforcing the others.
                     </p>
                 </header>
 

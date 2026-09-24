@@ -29,7 +29,7 @@ const TAGS = [
     "policy",
     "design",
     "education",
-    "ai",
+    "digital",
     "frontier-tech",
     "climate",
     "health",
@@ -85,7 +85,7 @@ const ARTICLES = [
         excerpt:
             "Communities compound when you reduce friction between capital, mentorship, and distribution.",
         content: [
-            "Ecosystems amplify when the connective tissue is strong—shared rituals, strong social graphs, and low-latency intros.",
+            "Ecosystems amplify when the connective tissue is strong-shared rituals, strong social graphs, and low-latency intros.",
             "We document tactics to increase serendipity: demo cycles, critique clubs, and ‘open office hours’ across subdomains."
         ],
     },
@@ -100,7 +100,7 @@ const ARTICLES = [
         views: 9803,
         heroBadge: "Analysis",
         excerpt:
-            "From green premiums to deployment curves—how financing mechanics accelerate adoption.",
+            "From green premiums to deployment curves-how financing mechanics accelerate adoption.",
         content: [
             "We connect the dots between learning curves and catalytic capital instruments.",
             "Playbook for local policymakers: how to derisk early-stage deployment to unlock private capital."
@@ -117,7 +117,7 @@ const ARTICLES = [
         views: 11290,
         heroBadge: "Playbook",
         excerpt:
-            "Instructional design, when instrumented, becomes a system that learns—just like a good team.",
+            "Instructional design, when instrumented, becomes a system that learns-just like a good team.",
         content: [
             "This note shows how interface-level nudges and content-level feedback loops can raise mastery without burnout.",
             "We include a minimal instrumentation checklist any school network can adopt."
@@ -139,7 +139,7 @@ function useLocalApplause(key) {
         } catch { return {}; }
     });
     useEffect(() => {
-        try { localStorage.setItem(key, JSON.stringify(map)); } catch { }
+        try { localStorage.setItem(key, JSON.stringify(map)); } catch { /* Ignore unavailable browser APIs. */ }
     }, [key, map]);
     const toggle = useCallback((id) => {
         setMap((m) => {
@@ -233,13 +233,13 @@ export default function PositiveSum() {
         }, { replace: false });
     }
 
-    function closeArticle() {
+    const closeArticle = useCallback(() => {
         setSearchParams((prev) => {
             const p = new URLSearchParams(prev);
             p.delete("article");
             return p;
         }, { replace: false });
-    }
+    }, [setSearchParams]);
 
     function copyShareLink(id) {
         const url = new URL(window.location.href);
@@ -262,7 +262,7 @@ export default function PositiveSum() {
             document.body.style.overflow = prev;
             window.removeEventListener("keydown", onKey);
         };
-    }, [openArticleData]);
+    }, [openArticleData, closeArticle]);
 
     return (
         <Styled.Page>
@@ -290,7 +290,7 @@ export default function PositiveSum() {
                         Ideas that <span className="accent">compound</span> in public
                     </h1>
                     <p className="sub">
-                        Essays, playbooks, and analyses from across the collective—grounded in evidence and built for builders.
+                        Essays, playbooks, and analyses from across the collective-grounded in evidence and built for builders.
                     </p>
                     <div className="actions">
                         <NavLink to="/our-work" className="btn-ghost">
@@ -523,7 +523,7 @@ export default function PositiveSum() {
             {/* Footer CTA */}
             <Styled.CTA className="card brandish">
                 <h3>Have a piece for Positive Sum?</h3>
-                <p>We publish evidence-first work. Share your draft or outline—let’s refine it together.</p>
+                <p>We publish evidence-first work. Share your draft or outline-let’s refine it together.</p>
                 <div className="actions">
                     <NavLink to="/contact" className="btn-primary">
                         <TbPlayerPlay size={16} />

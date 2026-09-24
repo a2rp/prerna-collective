@@ -34,21 +34,21 @@ const BOOKMARK_KEY = "internshipBookmarks:v1";
 /* ───────────────────────── mock data (simulate backend) ───────────────────────── */
 const INTERNSHIPS = [
     {
-        id: "eng-ai-remote",
-        title: "Software Engineering Intern — AI Tools",
+        id: "eng-digital-remote",
+        title: "Software Engineering Intern - Digital Tools",
         track: "Engineering",
         location: "Remote",
         duration: "12 weeks",
         stipend: "₹40,000 / mo",
         deadline: "2025-12-05",
         tags: ["React", "Node", "LLMs", "Vector DB"],
-        hero: getImg("eng-ai-tools"),
+        hero: getImg("eng-digital-tools"),
         applyLink: "mailto:internships@prerna.collective?subject=Application%20-%20AI%20Tools%20Intern",
         detailsLink: "/contact",
     },
     {
         id: "product-research-sf",
-        title: "Product Research Intern — Positive Sum",
+        title: "Product Research Intern - Positive Sum",
         track: "Product",
         location: "San Francisco",
         duration: "10 weeks",
@@ -64,7 +64,7 @@ const INTERNSHIPS = [
         title: "Design & Storytelling Intern",
         track: "Design",
         location: "Bengaluru",
-        duration: "8–12 weeks",
+        duration: "8-12 weeks",
         stipend: "₹30,000 / mo",
         deadline: "2025-12-15",
         tags: ["Motion", "Brand", "After Effects"],
@@ -90,7 +90,7 @@ const INTERNSHIPS = [
         title: "Venture Capital Scout Intern",
         track: "Venture",
         location: "Remote",
-        duration: "12–16 weeks",
+        duration: "12-16 weeks",
         stipend: "$1,500 / mo",
         deadline: "2025-12-28",
         tags: ["Deal Flow", "Market Maps", "Unit Economics"],
@@ -135,7 +135,7 @@ export default function InternshipsHub() {
     useEffect(() => {
         try {
             localStorage.setItem(BOOKMARK_KEY, JSON.stringify(bookmarks));
-        } catch { }
+        } catch { /* Ignore unavailable browser APIs. */ }
     }, [bookmarks]);
 
     const filtered = useMemo(() => {
@@ -297,7 +297,7 @@ export default function InternshipsHub() {
                             <select value={sort} onChange={(e) => setSort(e.target.value)} aria-label="Sort">
                                 <option value="deadlineAsc">Deadline ↑</option>
                                 <option value="deadlineDesc">Deadline ↓</option>
-                                <option value="title">Title A–Z</option>
+                                <option value="title">Title A-Z</option>
                             </select>
                         </label>
                     </div>
@@ -429,7 +429,7 @@ export default function InternshipsHub() {
                                             await navigator.clipboard.writeText(
                                                 `${window.location.origin}/internships#${r.id}`
                                             );
-                                        } catch { }
+                                        } catch { /* Ignore unavailable browser APIs. */ }
                                     }}
                                     title="Copy link"
                                     aria-label="Copy role link"
@@ -496,7 +496,7 @@ export default function InternshipsHub() {
                                 Step 2
                             </div>
                             <h3>Task</h3>
-                            <p>A small, real-world task (2–4 hrs). We value clarity, not tricks.</p>
+                            <p>A small, real-world task (2-4 hrs). We value clarity, not tricks.</p>
                         </div>
                     </li>
                     <li>
@@ -534,14 +534,14 @@ export default function InternshipsHub() {
                 </details>
                 <details>
                     <summary>How long is the program?</summary>
-                    <p>Typically 8–12 weeks. Exact duration is on each listing.</p>
+                    <p>Typically 8-12 weeks. Exact duration is on each listing.</p>
                 </details>
             </Styled.FAQ>
 
             {/* ───────────── cta ───────────── */}
             <Styled.CTA className="card brandish">
                 <h3>Didn’t find the perfect role?</h3>
-                <p>Pitch your own internship—propose a project and the mentor you want to learn from.</p>
+                <p>Pitch your own internship-propose a project and the mentor you want to learn from.</p>
                 <div className="actions">
                     <NavLink to="/contact" className="btn-primary" aria-label="Contact">
                         Contact

@@ -82,7 +82,7 @@ export default function Breadcrumbs({
                     </li>
                 ) && null)}
 
-                {model.map((c, idx) => (
+                {model.map((c) => (
                     <React.Fragment key={c.path}>
                         <li className="sep">
                             <TbChevronRight size={14} aria-hidden />

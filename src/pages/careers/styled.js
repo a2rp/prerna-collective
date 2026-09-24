@@ -635,10 +635,10 @@ export const Styled = {
     `,
 
     /* Cardish helper (for consistent padding/shadows) */
-    // Not a component export—just a utility class you can reuse.
+    // Not a component export-just a utility class you can reuse.
 };
 
-/* Global utility class — define once per page scope */
+/* Global utility class - define once per page scope */
 export const cardishGlobal = `
   .cardish {
     border: 1px solid var(--border);

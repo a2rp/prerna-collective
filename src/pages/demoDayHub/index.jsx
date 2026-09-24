@@ -37,14 +37,14 @@ const STAGE_LIST = [
     { key: "health", label: "Health & Bio" },
     { key: "climate", label: "Climate & Energy" },
     { key: "civic", label: "Civic Tech" },
-    { key: "ai", label: "AI for Public Good" },
+    { key: "digital", label: "Digital for Public Good" },
 ];
 
 const DATA_BY_YEAR = {
     "2025": {
         hero: {
             date: "Feb 14, 2025",
-            time: "10:00–17:30 IST",
+            time: "10:00-17:30 IST",
             venue: "Bengaluru • Indiranagar",
             tagline: "Founders building compounding public-good spillovers.",
             bg: getImg("demo-2025-hero", 2400, 1200),
@@ -54,7 +54,7 @@ const DATA_BY_YEAR = {
         },
         highlights: [
             { k: "Startups", v: "18", note: "Seed to Series-A" },
-            { k: "Sectors", v: "4", note: "AI, Climate, Health, Civic" },
+            { k: "Sectors", v: "4", note: "Digital, Climate, Health, Civic" },
             { k: "Attendees", v: "350+", note: "Investors & Operators" },
             { k: "Demos", v: "24", note: "Live on stage" },
         ],
@@ -67,7 +67,7 @@ const DATA_BY_YEAR = {
             },
             {
                 name: "Dr. Vivek Menon",
-                title: "AI Safety Researcher",
+                title: "Digital Safety Researcher",
                 img: getImg("spk-vivek-menon", 600, 600),
                 link: "https://twitter.com/",
             },
@@ -95,7 +95,7 @@ const DATA_BY_YEAR = {
             },
             {
                 name: "CommonsAI",
-                stage: "ai",
+                stage: "digital",
                 oneLine: "Verified models for public-interest tooling.",
                 img: getImg("s-commonsai", 900, 600),
                 site: "https://example.com/",
@@ -111,13 +111,13 @@ const DATA_BY_YEAR = {
         schedule: [
             { t: "10:00", title: "Doors & Check-in", sub: "Badges, coffee, maker tables" },
             { t: "10:30", title: "Opening Remarks", sub: "Mission & format" },
-            { t: "10:45", title: "Founder Lightning — AI", sub: "5 x 4-min demos + Q&A" },
-            { t: "11:25", title: "Panel — Evidence-led Impact", sub: "With investors & practitioners" },
+            { t: "10:45", title: "Founder Lightning - Digital", sub: "5 x 4-min demos + Q&A" },
+            { t: "11:25", title: "Panel - Evidence-led Impact", sub: "With investors & practitioners" },
             { t: "12:10", title: "Break & Demos", sub: "Hands-on booths" },
-            { t: "13:00", title: "Founder Lightning — Climate", sub: "5 x 4-min demos + Q&A" },
+            { t: "13:00", title: "Founder Lightning - Climate", sub: "5 x 4-min demos + Q&A" },
             { t: "14:00", title: "Lunch & Networking", sub: "Meet the teams" },
-            { t: "15:00", title: "Founder Lightning — Health", sub: "4 x 4-min demos + Q&A" },
-            { t: "15:45", title: "Founder Lightning — Civic", sub: "4 x 4-min demos + Q&A" },
+            { t: "15:00", title: "Founder Lightning - Health", sub: "4 x 4-min demos + Q&A" },
+            { t: "15:45", title: "Founder Lightning - Civic", sub: "4 x 4-min demos + Q&A" },
             { t: "16:30", title: "Keynote", sub: "Compounding public-good spillovers" },
             { t: "17:10", title: "Close & Social", sub: "Community announcements" },
         ],
@@ -127,7 +127,7 @@ const DATA_BY_YEAR = {
             { name: "Civic Commons", img: getImg("p-civic-commons", 400, 200), link: "https://example.com/" },
         ],
         faqs: [
-            { q: "Who should attend?", a: "Investors, operators, researchers, policy folks, and builders who care about AI, climate, health, and civic tech with measurable public-good spillovers." },
+            { q: "Who should attend?", a: "Investors, operators, researchers, policy folks, and builders who care about Digital, climate, health, and civic tech with measurable public-good spillovers." },
             { q: "Is there a livestream?", a: "Yes. We will stream the main stage on YouTube. A few hands-on demos are in-person only." },
             { q: "How are teams selected?", a: "Evidence of traction, clarity of problem framing, credible pathway to scale, and alignment with mission-first outcomes." },
         ],
@@ -136,7 +136,7 @@ const DATA_BY_YEAR = {
     "2024": {
         hero: {
             date: "Feb 10, 2024",
-            time: "10:00–17:00 IST",
+            time: "10:00-17:00 IST",
             venue: "Bengaluru • Koramangala",
             tagline: "From prototypes to public goods.",
             bg: getImg("demo-2024-hero", 2400, 1200),
@@ -146,7 +146,7 @@ const DATA_BY_YEAR = {
         },
         highlights: [
             { k: "Startups", v: "14", note: "Prototype to seed" },
-            { k: "Sectors", v: "4", note: "AI, Climate, Health, Civic" },
+            { k: "Sectors", v: "4", note: "Digital, Climate, Health, Civic" },
             { k: "Attendees", v: "300+", note: "Full house" },
             { k: "Demos", v: "20", note: "Live" },
         ],
@@ -160,7 +160,7 @@ const DATA_BY_YEAR = {
     "2023": {
         hero: {
             date: "Feb 05, 2023",
-            time: "10:00–16:30 IST",
+            time: "10:00-16:30 IST",
             venue: "Bengaluru • MG Road",
             tagline: "Early sparks, durable arcs.",
             bg: getImg("demo-2023-hero", 2400, 1200),
@@ -170,7 +170,7 @@ const DATA_BY_YEAR = {
         },
         highlights: [
             { k: "Startups", v: "9", note: "Earliest stage" },
-            { k: "Sectors", v: "3", note: "AI, Health, Civic" },
+            { k: "Sectors", v: "3", note: "Digital, Health, Civic" },
             { k: "Attendees", v: "180+", note: "Community" },
             { k: "Demos", v: "12", note: "Live" },
         ],

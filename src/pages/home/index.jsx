@@ -158,7 +158,7 @@ export default function Home() {
                     </h1>
 
                     <p className="sub">
-                        We back people and organizations tackling society’s hardest problems—combining philanthropy,
+                        We back people and organizations tackling society’s hardest problems-combining philanthropy,
                         venture capital, and storytelling to unlock durable progress.
                     </p>
 
